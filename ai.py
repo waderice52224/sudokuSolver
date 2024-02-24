@@ -7,18 +7,14 @@ def isNotOnRow(row, num):
     return True
 
 
-
-
-
 def isNotOnColumn(column, num):
     for i in range(9):
-        if num == layers[i][column]:
+        if num == board[i][column]:
             return False
     return True
 
 
-
-def isNotonSquare(x, y, num):
+def isNotOnSquare(x, y, num):
     if 0 <= x < 3:
         x = 0
     elif 3 <= x < 6:
@@ -33,7 +29,7 @@ def isNotonSquare(x, y, num):
         y = 6
     for i in range(3):
         for j in range(3):
-            if num == layers[i+y][j+x]:
+            if num == board[i + y][j + x]:
                 return False
     return True
 
@@ -51,7 +47,7 @@ def isInBox(num, xBox, yBox):
         yVal = 6
     for x in range(3):
         for y in range(3):
-            if num == layers[y + yVal][x + xVal]:
+            if num == board[y + yVal][x + xVal]:
                 return True
     return False
 
@@ -69,7 +65,7 @@ def findBoxRow(num, xBox, yBox):
         yVal = 6
     for x in range(3):
         for y in range(3):
-            if num == layers[y + yVal][x + xVal]:
+            if num == board[y + yVal][x + xVal]:
                 return y
     return -1
 
@@ -87,7 +83,7 @@ def findBoxColumn(num, xBox, yBox):
         yVal = 6
     for x in range(3):
         for y in range(3):
-            if num == layers[y + yVal][x + xVal]:
+            if num == board[y + yVal][x + xVal]:
                 return x
     return -1
 
@@ -113,31 +109,4 @@ def findTwoOnBoxColumn(boxColumn):
         if count == 2:
             final.append(i)
     return final
-
-# def rowHasOneSpot():
-#
-
-
-# These two functions seem to do what they were written to do, but it's unhelpful.
-# def getAllPosibleRow(row):
-#     final = []
-#     for i in row:
-#         if type(i) is not int:
-#             for j in i:
-#                 final.append(j)
-#         else:
-#             final.append(i)
-#     return final
-#
-# def findSoloNums(nums):
-#     print(nums)
-#     final = []
-#     for i in range(1, 10):
-#         count = 0
-#         for j in nums:
-#             if i == j:
-#                 count += 1
-#         if count == 1:
-#             final.append(i)
-#     print(final)
 

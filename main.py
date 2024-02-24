@@ -1,7 +1,6 @@
-from ai import *
 from logic import *
 
-addValues()
+addNonZeroValuesToChoices()
 replaceZeros()
 print(makeMsg())
 count = 0
@@ -13,7 +12,7 @@ while notDone():
     for i in range(3):
         columnTrick(i)
     fillChoicesTable()
-    makePerm()
+    addCorrectValuesToBoard()
     count += 1
     if count > 100:
         print("Took too long")

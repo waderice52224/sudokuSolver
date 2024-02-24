@@ -1,17 +1,17 @@
 from ai import *
-def addValues():
+def addNonZeroValuesToChoices():
     for i in range(9):
         for j in range(9):
-            if layers[i][j] != 0:
-                possibleChoices[i][j] = layers[i][j]
+            if board[i][j] != 0:
+                possibleChoices[i][j] = board[i][j]
 
 
 # replace zeros with empty space
 def replaceZeros():
     for i in range(9):
         for j in range(9):
-            if layers[i][j] == 0:
-                layers[i][j] = " "
+            if board[i][j] == 0:
+                board[i][j] = " "
 
 
 
@@ -19,9 +19,9 @@ def replaceZeros():
 def fillChoices(x, y):
     final = []
     for i in range(1, 10):
-        if isNotOnRow(layers[y], i):
+        if isNotOnRow(board[y], i):
             if isNotOnColumn(x, i):
-                if isNotonSquare(x, y, i):
+                if isNotOnSquare(x, y, i):
                     final.append(i)
     return final
 
@@ -30,94 +30,94 @@ def fillChoices(x, y):
 def fillChoicesTable():
     for i in range(9):
         for j in range(9):
-            if layers[j][i] == " ":
+            if board[j][i] == " ":
                 possibleChoices[j][i] = fillChoices(i, j)
 
 
-def makePerm():
+def addCorrectValuesToBoard():
     for i in range(9):
         for j in range(9):
-            if layers[i][j] == " ":
+            if board[i][j] == " ":
                 if len(possibleChoices[i][j]) == 1:
-                    layers[i][j] = possibleChoices[i][j][0]
+                    board[i][j] = possibleChoices[i][j][0]
 
 
 def rowTrick(boxRow):
-    twos = findTwoOnBoxRow(boxRow)
-    fillBox = 0
+    canidateNums = findTwoOnBoxRow(boxRow)
     numPos = []
-    row = 0
-    for i in twos:
+    rowWithinTargetBox = 0
+    for i in canidateNums:
         for j in range(3):
             if not isInBox(i, j, boxRow):
-                box = j
+                targetBox = j
             else:
                 numPos.append(findBoxRow(i, j, boxRow))
         for k in range(3):
             if k not in numPos:
-                row = k
-        layersRowValue = [layers[(boxRow * 3) + row][box * 3], layers[(boxRow * 3) + row][(box * 3) + 1],
-                          layers[(boxRow * 3) + row][(box * 3) + 2]]
+                rowWithinTargetBox = k
+        layersRowValue = [board[(boxRow * 3) + rowWithinTargetBox][targetBox * 3], board[(boxRow * 3) + rowWithinTargetBox][(targetBox * 3) + 1],
+                          board[(boxRow * 3) + rowWithinTargetBox][(targetBox * 3) + 2]]
         count = 0
         for p in layersRowValue:
             if p == ' ':
                 count += 1
         if count == 1:
-            makePermRowTrick(i, box, row, boxRow)
+            makePermRowTrick(i, targetBox, rowWithinTargetBox, boxRow)
         numPos = []
 
 
 
-
-def makePermRowTrick(num, box, row, boxRow):
-    layersRowValue = [layers[(boxRow * 3) + row][box * 3], layers[(boxRow * 3) + row][(box * 3) + 1], layers[(boxRow * 3) + row][(box * 3) + 2]]
+# both make perms can be imporoved if they accept rows and columns that have two empty spots and check next to the tartget cell to see if the num is on that row or column
+def makePermRowTrick(num, targetBox, rowWithinTargetBox, boxRow):
+    layersRowValue = [board[(boxRow * 3) + rowWithinTargetBox][targetBox * 3], board[(boxRow * 3) + rowWithinTargetBox][(targetBox * 3) + 1], board[(boxRow * 3) + rowWithinTargetBox][(targetBox * 3) + 2]]
     for i in layersRowValue:
         if i == ' ':
-            layers[(boxRow * 3) + row][(box * 3) + layersRowValue.index(' ')] = num
+            board[(boxRow * 3) + rowWithinTargetBox][(targetBox * 3) + layersRowValue.index(' ')] = num
 
 
 
 
 def columnTrick(boxColumn):
-    twos = findTwoOnBoxColumn(boxColumn)
-    fillBox = 0
+    canidateNums = findTwoOnBoxColumn(boxColumn)
     numPos = []
-    row = 0
-    box = 0
-    for i in twos:
+    rowWithinTargetBox = 0
+    targetBox = 0
+    for i in canidateNums:
         for j in range(3):
             if not isInBox(i, boxColumn, j):
-                box = j
+                targetBox = j
             else:
                 numPos.append(findBoxColumn(i, boxColumn, j))
         for k in range(3):
             if k not in numPos:
-                row = k
-        layersColumnValue = [layers[box * 3][(boxColumn * 3) + row], layers[(box * 3) + 1][(boxColumn * 3) + row], layers[(box * 3) + 2][(boxColumn * 3) + row]]
+                rowWithinTargetBox = k
+        layersColumnValue = [board[targetBox * 3][(boxColumn * 3) + rowWithinTargetBox], board[(targetBox * 3) + 1][(boxColumn * 3) + rowWithinTargetBox], board[(targetBox * 3) + 2][(boxColumn * 3) + rowWithinTargetBox]]
         count = 0
         for p in layersColumnValue:
             if p == ' ':
                 count += 1
         if count == 1:
-            makePermColumnTrick(i, box, row, boxColumn)
+            makePermColumnTrick(i, targetBox, rowWithinTargetBox, boxColumn)
         numPos = []
 
 
-def makePermColumnTrick(num, box, row, boxColumn):
-    layersColumnValue = [layers[box * 3][(boxColumn * 3) + row], layers[(box * 3) + 1][(boxColumn * 3) + row],layers[(box * 3) + 2][(boxColumn * 3) + row]]
+def makePermColumnTrick(num, targetBox, rowWithinTargetBox, boxColumn):
+    layersColumnValue = [board[targetBox * 3][(boxColumn * 3) + rowWithinTargetBox], board[(targetBox * 3) + 1][(boxColumn * 3) + rowWithinTargetBox], board[(targetBox * 3) + 2][(boxColumn * 3) + rowWithinTargetBox]]
     for i in layersColumnValue:
         if i == ' ':
-            layers[(box * 3) + layersColumnValue.index(' ')][(boxColumn * 3) + row] = num
+            board[(targetBox * 3) + layersColumnValue.index(' ')][(boxColumn * 3) + rowWithinTargetBox] = num
 
-def printThings():
-    for i in range(9):
-        for j in range(9):
-            print(possibleChoices[i][j], end=" ")
-        print()
+# Test Function
+# def printThings():
+#     for i in range(9):
+#         for j in range(9):
+#             print(possibleChoices[i][j], end=" ")
+#         print()
+
 
 def notDone():
     for i in range(9):
         for j in range(9):
-            if layers[i][j] == " ":
+            if board[i][j] == " ":
                 return True
     return False
