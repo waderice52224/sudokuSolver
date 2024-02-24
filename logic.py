@@ -83,26 +83,31 @@ def columnTrick(boxColumn):
     fillBox = 0
     numPos = []
     row = 0
+    box = 0
     for i in twos:
         for j in range(3):
             if not isInBox(i, boxColumn, j):
                 box = j
             else:
-                numPos.append(findBoxRow(i, boxColumn, j))
+                numPos.append(findBoxColumn(i, boxColumn, j))
         for k in range(3):
             if k not in numPos:
                 row = k
-        layersRowValue = [layers[(boxColumn * 3) + row][box * 3], layers[(boxColumn * 3) + row][(box * 3) + 1],
-                          layers[(boxColumn * 3) + row][(box * 3) + 2]]
+        layersColumnValue = [layers[box * 3][(boxColumn * 3) + row], layers[(box * 3) + 1][(boxColumn * 3) + row], layers[(box * 3) + 2][(boxColumn * 3) + row]]
         count = 0
-        for p in layersRowValue:
+        for p in layersColumnValue:
             if p == ' ':
                 count += 1
         if count == 1:
-            makePermRowTrick(i, box, row, boxRow)
+            makePermColumnTrick(i, box, row, boxColumn)
         numPos = []
 
 
+def makePermColumnTrick(num, box, row, boxColumn):
+    layersColumnValue = [layers[box * 3][(boxColumn * 3) + row], layers[(box * 3) + 1][(boxColumn * 3) + row],layers[(box * 3) + 2][(boxColumn * 3) + row]]
+    for i in layersColumnValue:
+        if i == ' ':
+            layers[(box * 3) + layersColumnValue.index(' ')][(boxColumn * 3) + row] = num
 
 def printThings():
     for i in range(9):

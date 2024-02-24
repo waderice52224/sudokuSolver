@@ -108,7 +108,7 @@ def findTwoOnBoxColumn(boxColumn):
     for i in range(1, 10):
         count = 0
         for j in range(3):
-            if isInBox(i, j, boxColumn):
+            if isInBox(i, boxColumn, j):
                 count += 1
         if count == 2:
             final.append(i)

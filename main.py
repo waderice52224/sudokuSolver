@@ -10,6 +10,8 @@ count = 0
 while notDone():
     for i in range(3):
         rowTrick(i)
+    for i in range(3):
+        columnTrick(i)
     fillChoicesTable()
     makePerm()
     count += 1
