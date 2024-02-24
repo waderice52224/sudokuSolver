@@ -61,7 +61,7 @@ def rowTrick(boxRow):
         for p in layersRowValue:
             if p == ' ':
                 count += 1
-        if count == 1:
+        if count == 1 or count == 2:
             makePermRowTrick(i, targetBox, rowWithinTargetBox, boxRow)
         numPos = []
 
@@ -70,11 +70,15 @@ def rowTrick(boxRow):
 # both make perms can be imporoved if they accept rows and columns that have two empty spots and check next to the tartget cell to see if the num is on that row or column
 def makePermRowTrick(num, targetBox, rowWithinTargetBox, boxRow):
     layersRowValue = [board[(boxRow * 3) + rowWithinTargetBox][targetBox * 3], board[(boxRow * 3) + rowWithinTargetBox][(targetBox * 3) + 1], board[(boxRow * 3) + rowWithinTargetBox][(targetBox * 3) + 2]]
-    for i in layersRowValue:
-        if i == ' ':
-            board[(boxRow * 3) + rowWithinTargetBox][(targetBox * 3) + layersRowValue.index(' ')] = num
-
-
+    count = 0
+    for i in range(3):
+        if layersRowValue[i] != ' ':
+            count += 1
+        elif isNumInColumn(num, (targetBox*3) + i):
+            layersRowValue[i] = -1
+            count += 1
+    if count == 2:
+        board[(boxRow * 3) + rowWithinTargetBox][(targetBox * 3) + layersRowValue.index(' ')] = num
 
 
 def columnTrick(boxColumn):
@@ -96,16 +100,48 @@ def columnTrick(boxColumn):
         for p in layersColumnValue:
             if p == ' ':
                 count += 1
-        if count == 1:
+        if count == 1 or count == 2:
             makePermColumnTrick(i, targetBox, rowWithinTargetBox, boxColumn)
         numPos = []
 
 
+
 def makePermColumnTrick(num, targetBox, rowWithinTargetBox, boxColumn):
-    layersColumnValue = [board[targetBox * 3][(boxColumn * 3) + rowWithinTargetBox], board[(targetBox * 3) + 1][(boxColumn * 3) + rowWithinTargetBox], board[(targetBox * 3) + 2][(boxColumn * 3) + rowWithinTargetBox]]
-    for i in layersColumnValue:
-        if i == ' ':
-            board[(targetBox * 3) + layersColumnValue.index(' ')][(boxColumn * 3) + rowWithinTargetBox] = num
+    layersColumnValue = [board[targetBox * 3][(boxColumn * 3) + rowWithinTargetBox],board[(targetBox * 3) + 1][(boxColumn * 3) + rowWithinTargetBox],board[(targetBox * 3) + 2][(boxColumn * 3) + rowWithinTargetBox]]
+    count = 0
+    for i in range(3):
+        if layersColumnValue[i] != ' ':
+            count += 1
+        elif isNumInRow(num, (targetBox * 3) + i):
+            layersColumnValue[i] = -1
+            count += 1
+    if count == 2:
+        board[(targetBox * 3) + layersColumnValue.index(' ')][(boxColumn * 3) + rowWithinTargetBox] = num
+
+
+def requiredValue(xBox, yBox):
+    neededNumbers = []
+    for i in range(1, 10):
+        if not isInBox(i, xBox, yBox):
+           neededNumbers.append(i)
+
+    for num in neededNumbers:
+        count = 0
+        correctSpot = []
+        for x in range(3):
+            for y in range(3):
+                if board[(yBox*3) + y][(xBox*3)+x] == ' ':
+                    if not isNumInRow(num, (xBox*3) + x):
+                        if not isNumInColumn(num, (yBox*3) + y):
+                            count += 1
+                            correctSpot = [y,x]
+        if count == 1:
+            board[(yBox*3) + correctSpot[0]][(xBox*3) + correctSpot[1]] = num
+            print(makeMsg())
+
+
+
+
 
 # Test Function
 # def printThings():

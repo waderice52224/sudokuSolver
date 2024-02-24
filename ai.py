@@ -110,3 +110,15 @@ def findTwoOnBoxColumn(boxColumn):
             final.append(i)
     return final
 
+
+def isNumInColumn(num, columnNum):
+    for i in range(9):
+        if board[i][columnNum] == num:
+            return True
+    return False
+
+def isNumInRow(num, rowNum):
+    for i in range(9):
+        if board[rowNum][i] == num:
+            return True
+    return False
