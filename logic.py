@@ -42,6 +42,68 @@ def makePerm():
                     layers[i][j] = possibleChoices[i][j][0]
 
 
+def rowTrick(boxRow):
+    twos = findTwoOnBoxRow(boxRow)
+    fillBox = 0
+    numPos = []
+    row = 0
+    for i in twos:
+        for j in range(3):
+            if not isInBox(i, j, boxRow):
+                box = j
+            else:
+                numPos.append(findBoxRow(i, j, boxRow))
+        for k in range(3):
+            if k not in numPos:
+                row = k
+        layersRowValue = [layers[(boxRow * 3) + row][box * 3], layers[(boxRow * 3) + row][(box * 3) + 1],
+                          layers[(boxRow * 3) + row][(box * 3) + 2]]
+        count = 0
+        for p in layersRowValue:
+            if p == ' ':
+                count += 1
+        if count == 1:
+            makePermRowTrick(i, box, row, boxRow)
+        numPos = []
+
+
+
+
+def makePermRowTrick(num, box, row, boxRow):
+    layersRowValue = [layers[(boxRow * 3) + row][box * 3], layers[(boxRow * 3) + row][(box * 3) + 1], layers[(boxRow * 3) + row][(box * 3) + 2]]
+    for i in layersRowValue:
+        if i == ' ':
+            layers[(boxRow * 3) + row][(box * 3) + layersRowValue.index(' ')] = num
+
+
+
+
+def columnTrick(boxColumn):
+    twos = findTwoOnBoxColumn(boxColumn)
+    fillBox = 0
+    numPos = []
+    row = 0
+    for i in twos:
+        for j in range(3):
+            if not isInBox(i, boxColumn, j):
+                box = j
+            else:
+                numPos.append(findBoxRow(i, boxColumn, j))
+        for k in range(3):
+            if k not in numPos:
+                row = k
+        layersRowValue = [layers[(boxColumn * 3) + row][box * 3], layers[(boxColumn * 3) + row][(box * 3) + 1],
+                          layers[(boxColumn * 3) + row][(box * 3) + 2]]
+        count = 0
+        for p in layersRowValue:
+            if p == ' ':
+                count += 1
+        if count == 1:
+            makePermRowTrick(i, box, row, boxRow)
+        numPos = []
+
+
+
 def printThings():
     for i in range(9):
         for j in range(9):

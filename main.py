@@ -1,15 +1,18 @@
 from ai import *
 from logic import *
 
-
 addValues()
 replaceZeros()
 print(makeMsg())
 count = 0
+
+
 while notDone():
+    for i in range(3):
+        rowTrick(i)
     fillChoicesTable()
     makePerm()
-    count+=1
+    count += 1
     if count > 100:
         print("Took too long")
         break
