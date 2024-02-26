@@ -6,13 +6,13 @@ replaceZeros()
 print(makeMsg())
 count = 0
 
-#requriedValue currently Broken
+
 
 
 while notDone():
-    # for x in range(3):
-    #     for y in range(3):
-    #         requiredValue(y, x)
+    for x in range(3):
+        for y in range(3):
+            requiredValue(y, x)
     for i in range(3):
         rowTrick(i)
     for i in range(3):

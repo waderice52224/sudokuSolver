@@ -67,6 +67,7 @@ def rowTrick(boxRow):
 
 
 
+
 # both make perms can be imporoved if they accept rows and columns that have two empty spots and check next to the tartget cell to see if the num is on that row or column
 def makePermRowTrick(num, targetBox, rowWithinTargetBox, boxRow):
     layersRowValue = [board[(boxRow * 3) + rowWithinTargetBox][targetBox * 3], board[(boxRow * 3) + rowWithinTargetBox][(targetBox * 3) + 1], board[(boxRow * 3) + rowWithinTargetBox][(targetBox * 3) + 2]]
@@ -79,6 +80,7 @@ def makePermRowTrick(num, targetBox, rowWithinTargetBox, boxRow):
             count += 1
     if count == 2:
         board[(boxRow * 3) + rowWithinTargetBox][(targetBox * 3) + layersRowValue.index(' ')] = num
+
 
 
 def columnTrick(boxColumn):
@@ -130,15 +132,14 @@ def requiredValue(xBox, yBox):
         correctSpot = []
         for x in range(3):
             for y in range(3):
-                if board[(yBox*3) + y][(xBox*3)+x] == ' ':
-                    if not isNumInRow(num, (xBox*3) + x):
-                        if not isNumInColumn(num, (yBox*3) + y):
+                if board[(yBox*3) + x][(xBox*3)+y] == ' ':
+                    if not isNumInColumn(num, (xBox*3) + y):
+                        if not isNumInRow(num, (yBox*3) + x):
                             count += 1
-                            correctSpot = [y,x]
+                            correctSpot = [x,y]
+
         if count == 1:
             board[(yBox*3) + correctSpot[0]][(xBox*3) + correctSpot[1]] = num
-            print(makeMsg())
-
 
 
 
