@@ -25,7 +25,7 @@ I took a very simple approach. I thought about how I play Sudoku and broke it do
 ## What I have learned so far
 
 ### Code Quality
-I am kinda disappointed how messy the code I write is. The first version of the program was completely unreadable and inconsistent. Frankly after the only refactor I have done, it's still a disaster. I am learning a few things about how to write code a little better on the first version. I am also getting a lot of practice refactoring my code.
+I am kinda disappointed how messy the code I write is. The first version of the program was completely unreadable and inconsistent. Frankly after the only refactor I have done, it's still a disaster. I am learning a few things about how to write code a little better on the first try. I am also getting a lot of practice refactoring my code.
 
 ### Tests
 This program grew legs and ran towards being my testing lesson. My plans for the program is to 

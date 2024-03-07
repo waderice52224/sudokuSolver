@@ -7,7 +7,7 @@ print(makeMsg())
 count = 0
 
 
-
+ # add a main fucntion that passes in the board for testing purposes. 
 
 while notDone():
     for x in range(3):
