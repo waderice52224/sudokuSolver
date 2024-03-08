@@ -46,6 +46,13 @@ def test_isNotOnSquare():
     assert isNotOnSquare(8, 8, 1, board) == True
     assert isNotOnSquare(8, 0, 2, board) == False
 
+def test_isInBox():
+    assert isInBox(4, 0,0, board) == False
+    assert isInBox(1, 0,0, board) == True
+    assert isInBox(2, 0,0, board) == True
+    assert isInBox(5, 0,0, board) == False
+
+
 
 def test_findBoxRow():
     assert findBoxRow(3, 0, 0, board) == 0
