@@ -1,35 +1,31 @@
 from logic import *
-from ai import *
+from data import *
 
-addNonZeroValuesToChoices()
-replaceZeros()
+addNonZeroValuesToChoices(board)
+replaceZeros(board)
 print(makeMsg())
-count = 0
 
 
- # add a main fucntion that passes in the board for testing purposes. 
 
-while notDone():
-    for x in range(3):
-        for y in range(3):
-            requiredValue(y, x)
-    for i in range(3):
-        rowTrick(i)
-    for i in range(3):
-        columnTrick(i)
-    fillChoicesTable()
-    addCorrectValuesToBoard()
+ # add a main fucntion that passes in the board for testing purposes.
+def main(currentBoard):
+    count = 0
+    while notDone(currentBoard):
+        for x in range(3):
+            for y in range(3):
+                requiredValue(y, x, currentBoard)
+        fillChoicesTable(currentBoard)
+        addCorrectValuesToBoard(currentBoard)
 
-    count += 1
-    if count >= 100:
-        print("Took too long")
-        break
-
-
-print(makeMsg())
-print(count)
+        count += 1
+        if count >= 100:
+            print("Took too long")
+            break
+    print(makeMsg())
+    print(count)
 
 
+main(board)
 
 # Notes
 # Each square has a list of possible number choices.

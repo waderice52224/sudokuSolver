@@ -10,6 +10,7 @@ board = [
     [6, 0, 0, 1, 0, 7, 0, 0, 3]
 ]
 
+# this is just to make adding a new board easier. Just cp the array and copy it over the board and add values manually
 
 sudoku_array = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0],

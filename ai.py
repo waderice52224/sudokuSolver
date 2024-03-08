@@ -1,4 +1,3 @@
-from data import *
 
 def isNotOnRow(row, num):
     for i in row:
@@ -7,14 +6,16 @@ def isNotOnRow(row, num):
     return True
 
 
-def isNotOnColumn(column, num):
+def isNotOnColumn(column, num, currentBoard):
+    board = currentBoard
     for i in range(9):
         if num == board[i][column]:
             return False
     return True
 
 
-def isNotOnSquare(x, y, num):
+def isNotOnSquare(x, y, num, currentBoard):
+    board = currentBoard
     if 0 <= x < 3:
         x = 0
     elif 3 <= x < 6:
@@ -34,7 +35,8 @@ def isNotOnSquare(x, y, num):
     return True
 
 
-def isInBox(num, xBox, yBox):
+def isInBox(num, xBox, yBox, currentBoard):
+    board = currentBoard
     xVal = 0
     yVal = 0
     if xBox == 1:
@@ -52,7 +54,8 @@ def isInBox(num, xBox, yBox):
     return False
 
 
-def findBoxRow(num, xBox, yBox):
+def findBoxRow(num, xBox, yBox, currentBoard):
+    board = currentBoard
     xVal = 0
     yVal = 0
     if xBox == 1:
@@ -70,7 +73,8 @@ def findBoxRow(num, xBox, yBox):
     return -1
 
 
-def findBoxColumn(num, xBox, yBox):
+def findBoxColumn(num, xBox, yBox, currentBoard):
+    board = currentBoard
     xVal = 0
     yVal = 0
     if xBox == 1:
@@ -87,37 +91,40 @@ def findBoxColumn(num, xBox, yBox):
                 return x
     return -1
 
-def findTwoOnBoxRow(boxRow):
+def findTwoOnBoxRow(boxRow, currentBoard):
     final = []
     for i in range(1, 10):
         count = 0
         for j in range(3):
-            if isInBox(i, j, boxRow):
+            if isInBox(i, j, boxRow, currentBoard):
                 count += 1
         if count == 2:
             final.append(i)
     return final
 
 
-def findTwoOnBoxColumn(boxColumn):
+def findTwoOnBoxColumn(boxColumn, currentBoard):
     final = []
     for i in range(1, 10):
         count = 0
         for j in range(3):
-            if isInBox(i, boxColumn, j):
+            if isInBox(i, boxColumn, j, currentBoard):
                 count += 1
         if count == 2:
             final.append(i)
     return final
 
 
-def isNumInColumn(num, columnNum):
+def isNumInColumn(num, columnNum, currentBoard):
+    board = currentBoard
     for i in range(9):
         if board[i][columnNum] == num:
             return True
     return False
 
-def isNumInRow(num, rowNum):
+
+def isNumInRow(num, rowNum, currentBoard):
+    board = currentBoard
     for i in range(9):
         if board[rowNum][i] == num:
             return True
