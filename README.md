@@ -53,7 +53,7 @@ def requiredValue(xBox, yBox):
         if count == 1:
             board[(yBox*3) + correctSpot[0]][(xBox*3) + correctSpot[1]] = num
 ```
-I am particularly proud of this code because it launched the program past hard puzzles and into expert puzzles. Within library of puzzles I use to test it cannot solve all expert puzzles but all hard puzzles and some expert. This was a huge jump in intelligence from just one rule. This rule also made columnTrick and rowTrick outdated. It is just a smarter and more useful rule, while also being less code. 
+I am particularly proud of this code because it launched the program past hard puzzles and into expert puzzles. Within library of puzzles I use to test it cannot solve all expert puzzles but all hard puzzles and some expert. This was a huge jump in intelligence from just one rule. This rule also made columnTrick and rowTrick outdated, (in the current version of the project they no longer exist [this is a link to the commit where they still exist](https://github.com/waderice52224/sudokuSolver/blob/2d2d0aab911a7799bd26d82f09dba323fb7b31e2/logic.py)). It is just a smarter and more useful rule, while also being less code. 
 
 ## How to run
 Currently the program is not user friendly. 

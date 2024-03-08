@@ -27,30 +27,50 @@ board2 = [
 
 
 def test_isNotOnRow():
-    assert isNotOnRow(board[0], 2) == False
-    assert isNotOnRow(board[0], 9) == True
-    assert isNotOnRow(board[0], 6) == True
     assert isNotOnRow(board[0], 1) == False
+    assert isNotOnRow(board[0], 2) == False
+    assert isNotOnRow(board[0], 3) == False
+    assert isNotOnRow(board[0], 4) == True
+    assert isNotOnRow(board[0], 5) == True
+    assert isNotOnRow(board[0], 6) == True
+    assert isNotOnRow(board[0], 7) == True
+    assert isNotOnRow(board[0], 8) == False
+    assert isNotOnRow(board[0], 9) == True
 
 
 def test_isNotOnColumn():
-    assert isNotOnColumn(0, 9, board) == False
-    assert isNotOnColumn(0, 1, board) == True
     assert isNotOnColumn(0, 1, board) == True
     assert isNotOnColumn(0, 2, board) == False
+    assert isNotOnColumn(0, 3, board) == False
+    assert isNotOnColumn(0, 4, board) == True
+    assert isNotOnColumn(0, 5, board) == True
+    assert isNotOnColumn(0, 6, board) == False
+    assert isNotOnColumn(0, 7, board) == False
+    assert isNotOnColumn(0, 8, board) == False
+    assert isNotOnColumn(0, 9, board) == False
 
 
 def test_isNotOnSquare():
+    assert isNotOnSquare(0, 0, 1, board) == False
+    assert isNotOnSquare(0, 0, 2, board) == False
     assert isNotOnSquare(0, 0, 3, board) == False
-    assert isNotOnSquare(5, 5, 1, board) == True
-    assert isNotOnSquare(8, 8, 1, board) == True
-    assert isNotOnSquare(8, 0, 2, board) == False
+    assert isNotOnSquare(0, 0, 4, board) == True
+    assert isNotOnSquare(0, 0, 5, board) == True
+    assert isNotOnSquare(0, 0, 6, board) == True
+    assert isNotOnSquare(0, 0, 7, board) == True
+    assert isNotOnSquare(0, 0, 8, board) == True
+    assert isNotOnSquare(0, 0, 9, board) == True
 
 def test_isInBox():
-    assert isInBox(4, 0,0, board) == False
     assert isInBox(1, 0,0, board) == True
-    assert isInBox(2, 0,0, board) == True
-    assert isInBox(5, 0,0, board) == False
+    assert isInBox(2, 0, 0, board) == True
+    assert isInBox(3, 0, 0, board) == True
+    assert isInBox(4, 0, 0, board) == False
+    assert isInBox(5, 0, 0, board) == False
+    assert isInBox(6, 0, 0, board) == False
+    assert isInBox(7, 0, 0, board) == False
+    assert isInBox(8, 0, 0, board) == False
+    assert isInBox(9, 0, 0, board) == False
 
 
 
