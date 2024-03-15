@@ -28,7 +28,7 @@ I took a very simple approach. I thought about how I play Sudoku and broke it do
 I am kinda disappointed how messy the code I write is. The first version of the program was completely unreadable and inconsistent. Frankly after the only refactor I have done, it's still a disaster. I am learning a few things about how to write code a little better on the first try. I am also getting a lot of practice refactoring my code.
 
 ### Tests
-This program grew legs and ran towards being my testing lesson. My plans for the program is to 
+This program grew legs and ran towards being my testing lesson. My plans for the program is to keep adding test and the end goal is to go a little overboard on the testing. 
 
 ### Problem solving
 I did not really learn anything more about python in this program. As far as growing my hard skills, It was mostly [code quality](#code-quality), and my problem-solving ability. As I wrote the program I would finish a rule and test how much smarter the program had gotten. A big moment is when I started testing the program against hard puzzles. At first the program was very incapable. This is what pushed me to write requiredValue:
