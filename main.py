@@ -16,7 +16,6 @@ def main(currentBoard):
                 requiredValue(y, x, currentBoard)
         fillChoicesTable(currentBoard)
         addCorrectValuesToBoard(currentBoard)
-
         count += 1
         if count >= 100:
             print("Took too long")
@@ -25,6 +24,10 @@ def main(currentBoard):
     print(count)
 
 
+main(board)
+makePermGuess(board)
+print("Board after Guess")
+print(makeMsg())
 main(board)
 
 # Notes

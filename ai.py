@@ -129,3 +129,4 @@ def isNumInRow(num, rowNum, currentBoard):
         if board[rowNum][i] == num:
             return True
     return False
+
