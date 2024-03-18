@@ -86,18 +86,33 @@ def stripList(list):
             final.append(j)
     return final
 
-def getGoodNumGuess():
+def getGoodNumGuessMax():
     twoGuesses = makeTwoGuessesList()
     return max(stripList(twoGuesses))
 
 
-def makePermGuess(currentBoard):
+def getGoodNumGuessMin():
+    twoGuesses = makeTwoGuessesList()
+    return min(stripList(twoGuesses))
+
+
+def makePermGuessMax(currentBoard):
     for i in range(len(possibleChoices)):
         for j in range(len(possibleChoices[i])):
             if isinstance(possibleChoices[i][j], list):
                 if len(possibleChoices[i][j]) == 2:
-                    if getGoodNumGuess() in possibleChoices[i][j]:
-                        currentBoard[i][j] = getGoodNumGuess()
+                    if getGoodNumGuessMax() in possibleChoices[i][j]:
+                        currentBoard[i][j] = getGoodNumGuessMax()
+                        return
+
+
+def makePermGuessMin(currentBoard):
+    for i in range(len(possibleChoices)):
+        for j in range(len(possibleChoices[i])):
+            if isinstance(possibleChoices[i][j], list):
+                if len(possibleChoices[i][j]) == 2:
+                    if getGoodNumGuessMin() in possibleChoices[i][j]:
+                        currentBoard[i][j] = getGoodNumGuessMin()
                         return
 
 

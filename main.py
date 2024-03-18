@@ -24,11 +24,18 @@ def main(currentBoard):
     print(count)
 
 
+makePermGuessMax(board)
 main(board)
-makePermGuess(board)
-print("Board after Guess")
+print("Board after Guess max")
 print(makeMsg())
+
+
+makePermGuessMin(board)
 main(board)
+print("Board after Guess min")
+print(makeMsg())
+
+
 
 # Notes
 # Each square has a list of possible number choices.
