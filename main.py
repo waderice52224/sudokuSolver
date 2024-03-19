@@ -1,9 +1,8 @@
 from logic import *
 from data import *
-
 addNonZeroValuesToChoices(board)
 replaceZeros(board)
-print(makeMsg())
+print(makeMsg(board))
 
 
 
@@ -21,37 +20,34 @@ def findNumbers(currentBoard):
             break
 
 
-findNumbers(board)
-if not notDone(board):
-    print(makeMsg())
-    print(1)
-correctBoard = board
-print(correctBoard)
-for i in range(1, 5):
-    for j in range(1, 5):
-        board = correctBoard
-        print(correctBoard)
-        if i == 1:
-            makePermGuessMaxHeads(board)
-        elif i == 2:
-            makePermGuessMaxTails(board)
-        elif i == 3:
-            makePermGuessMinHeads(board)
-        else:
-            makePermGuessMinTails(board)
-        if j == 1:
-            makePermGuessMaxHeads(board)
-        elif j == 2:
-            makePermGuessMaxTails(board)
-        elif j == 3:
-            makePermGuessMinHeads(board)
-        else:
-            makePermGuessMinTails(board)
-        findNumbers(board)
-        # if not notDone(board):
-           # print(makeMsg())
+def main(currentBoard):
+    correctBoard = currentBoard
+    for i in range(1, 5):
+        for j in range(1, 5):
+            if i == 1:
+                makePermGuessMaxHeads(currentBoard)
+            elif i == 2:
+                makePermGuessMaxTails(currentBoard)
+            elif i == 3:
+                makePermGuessMinHeads(currentBoard)
+            else:
+                makePermGuessMinTails(currentBoard)
+            if j == 1:
+                makePermGuessMaxHeads(currentBoard)
+            elif j == 2:
+                makePermGuessMaxTails(currentBoard)
+            elif j == 3:
+                makePermGuessMinHeads(currentBoard)
+            else:
+                makePermGuessMinTails(currentBoard)
+            findNumbers(currentBoard)
+            print(currentBoard)
+            if not notDone(board):
+                print(makeMsg(board))
+            currentBoard = correctBoard
 
 
+main(board)
 
 
 # findNumbers(board)
