@@ -1,5 +1,6 @@
 from logic import *
 from data import *
+import copy
 addNonZeroValuesToChoices(board)
 replaceZeros(board)
 print(makeMsg(board))
@@ -20,34 +21,75 @@ def findNumbers(currentBoard):
             break
 
 
-def main(currentBoard):
-    correctBoard = currentBoard
-    for i in range(1, 5):
-        for j in range(1, 5):
-            if i == 1:
-                makePermGuessMaxHeads(currentBoard)
-            elif i == 2:
-                makePermGuessMaxTails(currentBoard)
-            elif i == 3:
-                makePermGuessMinHeads(currentBoard)
-            else:
-                makePermGuessMinTails(currentBoard)
-            if j == 1:
-                makePermGuessMaxHeads(currentBoard)
-            elif j == 2:
-                makePermGuessMaxTails(currentBoard)
-            elif j == 3:
-                makePermGuessMinHeads(currentBoard)
-            else:
-                makePermGuessMinTails(currentBoard)
-            findNumbers(currentBoard)
-            print(currentBoard)
-            if not notDone(board):
-                print(makeMsg(board))
-            currentBoard = correctBoard
+# def main(currentBoard):
+#     findNumbers(currentBoard)
+#     correctBoard = copy.deepcopy(currentBoard)
+#     for i in range(1, 5):
+#         for j in range(1, 5):
+#             if i == 1:
+#                 makePermGuessMaxHeads(currentBoard)
+#             elif i == 2:
+#                 makePermGuessMaxTails(currentBoard)
+#             elif i == 3:
+#                 makePermGuessMinHeads(currentBoard)
+#             else:
+#                 makePermGuessMinTails(currentBoard)
+#             if j == 1:
+#                 makePermGuessMaxHeads(currentBoard)
+#             elif j == 2:
+#                 makePermGuessMaxTails(currentBoard)
+#             elif j == 3:
+#                 makePermGuessMinHeads(currentBoard)
+#             else:
+#                 makePermGuessMinTails(currentBoard)
+#             findNumbers(currentBoard)
+#             if not notDone(currentBoard):
+#                 print(makeMsg(currentBoard))
+#             currentBoard = copy.deepcopy(correctBoard)
 
 
-main(board)
+# main(board)
+
+def mainRec(currentBoard, depth):
+    findNumbers(currentBoard)
+    correctBoard = copy.deepcopy(currentBoard)
+    for i in range(2):
+        for j in range(2):
+            if i == 0:
+                makePermGuessMaxHeads(currentBoard)
+                if j == 0:
+                    makePermGuessMinHeads(currentBoard)
+                else:
+                    makePermGuessMinTails(currentBoard)
+            else:
+                makePermGuessMaxTails(currentBoard)
+                if j == 0:
+                    makePermGuessMinHeads(currentBoard)
+                else:
+                    makePermGuessMinTails(currentBoard)
+        findNumbers(currentBoard)
+        if not notDone(currentBoard):
+            print(depth)
+            return currentBoard
+        elif depth == 2:
+            return None
+        else:
+            mainRec(currentBoard, depth + 1)
+        currentBoard = copy.deepcopy(correctBoard)
+
+
+print(makeMsg(mainRec(board, 0)))
+
+
+# if board is finished
+    # return the board and print the depth
+# elif board is not finished but the depth is too big
+    # return void
+# else
+    # call function with depth+1
+
+
+
 
 
 # findNumbers(board)

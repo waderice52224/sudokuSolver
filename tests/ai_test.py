@@ -89,7 +89,7 @@ board7 = [
     [0, 0, 9, 1, 5, 0, 0, 0, 6]
 ]
 
-# hardest puzzle
+# hardest puzzle, still not solved even with guess func
 board8 = [
     [0, 0, 0, 3, 0, 0, 0, 5, 0],
     [2, 0, 1, 4, 7, 5, 3, 9, 0],
