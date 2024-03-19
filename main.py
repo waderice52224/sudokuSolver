@@ -8,7 +8,7 @@ print(makeMsg())
 
 
  # add a main fucntion that passes in the board for testing purposes.
-def main(currentBoard):
+def findNumbers(currentBoard):
     count = 0
     while notDone(currentBoard):
         for x in range(3):
@@ -17,25 +17,75 @@ def main(currentBoard):
         fillChoicesTable(currentBoard)
         addCorrectValuesToBoard(currentBoard)
         count += 1
-        if count >= 100:
-            print("Took too long")
+        if count >= 10:
             break
+
+
+findNumbers(board)
+if not notDone(board):
     print(makeMsg())
-    print(count)
+    print(1)
+correctBoard = board
+print(correctBoard)
+for i in range(1, 5):
+    for j in range(1, 5):
+        board = correctBoard
+        print(correctBoard)
+        if i == 1:
+            makePermGuessMaxHeads(board)
+        elif i == 2:
+            makePermGuessMaxTails(board)
+        elif i == 3:
+            makePermGuessMinHeads(board)
+        else:
+            makePermGuessMinTails(board)
+        if j == 1:
+            makePermGuessMaxHeads(board)
+        elif j == 2:
+            makePermGuessMaxTails(board)
+        elif j == 3:
+            makePermGuessMinHeads(board)
+        else:
+            makePermGuessMinTails(board)
+        findNumbers(board)
+        # if not notDone(board):
+           # print(makeMsg())
 
 
-makePermGuessMax(board)
-main(board)
-print("Board after Guess max")
-print(makeMsg())
 
 
-makePermGuessMin(board)
-main(board)
-print("Board after Guess min")
-print(makeMsg())
-
-
+# findNumbers(board)
+# if not notDone(board):
+#     print(makeMsg())
+#     print(1)
+# correctBoard = board
+# if notDone(board):
+#     makePermGuessMaxHeads(board)
+#     findNumbers(board)
+#     if not notDone(board):
+#         print(makeMsg())
+#         print(2)
+# board = correctBoard
+# if notDone(board):
+#     makePermGuessMaxTails(board)
+#     findNumbers(board)
+#     if not notDone(board):
+#         print(makeMsg())
+#         print(3)
+# board = correctBoard
+# if notDone(board):
+#     makePermGuessMinHeads(board)
+#     findNumbers(board)
+#     if not notDone(board):
+#         print(makeMsg())
+#         print(4)
+# board = correctBoard
+# if notDone(board):
+#     makePermGuessMinTails(board)
+#     findNumbers(board)
+#     if not notDone(board):
+#         print(makeMsg())
+#         print(5)
 
 # Notes
 # Each square has a list of possible number choices.

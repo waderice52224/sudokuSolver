@@ -96,23 +96,43 @@ def getGoodNumGuessMin():
     return min(stripList(twoGuesses))
 
 
-def makePermGuessMax(currentBoard):
+def makePermGuessMaxHeads(currentBoard):
     for i in range(len(possibleChoices)):
         for j in range(len(possibleChoices[i])):
             if isinstance(possibleChoices[i][j], list):
                 if len(possibleChoices[i][j]) == 2:
                     if getGoodNumGuessMax() in possibleChoices[i][j]:
-                        currentBoard[i][j] = getGoodNumGuessMax()
+                        currentBoard[i][j] = possibleChoices[i][j][0]
                         return
 
 
-def makePermGuessMin(currentBoard):
+def makePermGuessMaxTails(currentBoard):
+    for i in range(len(possibleChoices)):
+        for j in range(len(possibleChoices[i])):
+            if isinstance(possibleChoices[i][j], list):
+                if len(possibleChoices[i][j]) == 2:
+                    if getGoodNumGuessMax() in possibleChoices[i][j]:
+                        currentBoard[i][j] = possibleChoices[i][j][1]
+                        return
+
+
+def makePermGuessMinHeads(currentBoard):
     for i in range(len(possibleChoices)):
         for j in range(len(possibleChoices[i])):
             if isinstance(possibleChoices[i][j], list):
                 if len(possibleChoices[i][j]) == 2:
                     if getGoodNumGuessMin() in possibleChoices[i][j]:
-                        currentBoard[i][j] = getGoodNumGuessMin()
+                        currentBoard[i][j] = possibleChoices[i][j][0]
+                        return
+
+
+def makePermGuessMinTails(currentBoard):
+    for i in range(len(possibleChoices)):
+        for j in range(len(possibleChoices[i])):
+            if isinstance(possibleChoices[i][j], list):
+                if len(possibleChoices[i][j]) == 2:
+                    if getGoodNumGuessMin() in possibleChoices[i][j]:
+                        currentBoard[i][j] = possibleChoices[i][j][1]
                         return
 
 
