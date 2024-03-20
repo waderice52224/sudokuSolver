@@ -64,10 +64,12 @@ def mainRec(currentBoard, depth):
             print(depth)
             print(makeMsg(currentBoard))
             return currentBoard
-        elif depth == 10:
+        elif depth == 25:
             return None
         else:
-            return mainRec(copy.deepcopy(currentBoard), depth + 1)
+            # print(depth)
+            # print(makeMsg(currentBoard))
+            mainRec(copy.deepcopy(currentBoard), depth + 1)
 
 
 
