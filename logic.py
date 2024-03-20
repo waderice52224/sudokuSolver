@@ -149,6 +149,19 @@ def makePermGuessMinTails(currentBoard):
 
 
 
+def boardMostlyFull(currentBoard):
+    count = 0
+    board = currentBoard
+    for i in range(9):
+        for j in range(9):
+            if board[i][j] == " ":
+                count+=1
+    if count > 4:
+        return False
+    else:
+        return True
+
+
 def notDone(currentBoard):
     board = currentBoard
     for i in range(9):

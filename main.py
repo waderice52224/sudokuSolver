@@ -64,11 +64,14 @@ def mainRec(currentBoard, depth):
             print(depth)
             print(makeMsg(currentBoard))
             return currentBoard
-        elif depth == 25:
+        # elif boardMostlyFull(currentBoard):
+        #     print("Duplicate")
+        #     return None
+        elif depth == 10:
             return None
         else:
-            # print(depth)
-            # print(makeMsg(currentBoard))
+            print(depth)
+            print(makeMsg(currentBoard))
             mainRec(copy.deepcopy(currentBoard), depth + 1)
 
 

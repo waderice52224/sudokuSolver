@@ -1,4 +1,5 @@
-from sudokuSolver.ai import isNotOnRow, isNotOnColumn, isNotOnSquare, isInBox, findBoxRow, findBoxColumn, findTwoOnBoxRow, findTwoOnBoxColumn, isNumInColumn, isNumInRow
+from ai import isNotOnRow, isNotOnColumn, isNotOnSquare, isInBox, findBoxRow, findBoxColumn, findTwoOnBoxRow, findTwoOnBoxColumn, isNumInColumn, isNumInRow
+
 
 board = [
     [3, 0, 0, 8, 0, 1, 0, 0, 2],
@@ -114,7 +115,7 @@ board9 = [
     [0, 0, 0, 7, 0, 3, 0, 0, 0]
 ]
 
-
+# master board
 board10 = [
     [0, 4, 0, 7, 2, 0, 1, 0, 0],
     [0, 3, 0, 9, 0, 0, 0, 0, 0],
@@ -138,6 +139,7 @@ def test_isNotOnRow():
     assert isNotOnRow(board[0], 7) == True
     assert isNotOnRow(board[0], 8) == False
     assert isNotOnRow(board[0], 9) == True
+
 
 
 def test_isNotOnColumn():
