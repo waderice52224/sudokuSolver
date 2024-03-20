@@ -48,45 +48,35 @@ def findNumbers(currentBoard):
 #             currentBoard = copy.deepcopy(correctBoard)
 
 
-# main(board)
+
 
 def mainRec(currentBoard, depth):
     findNumbers(currentBoard)
-    correctBoard = copy.deepcopy(currentBoard)
     for i in range(2):
-        for j in range(2):
-            if i == 0:
-                makePermGuessMaxHeads(currentBoard)
-                if j == 0:
-                    makePermGuessMinHeads(currentBoard)
-                else:
-                    makePermGuessMinTails(currentBoard)
-            else:
-                makePermGuessMaxTails(currentBoard)
-                if j == 0:
-                    makePermGuessMinHeads(currentBoard)
-                else:
-                    makePermGuessMinTails(currentBoard)
+        if i == 0:
+            localPossibleChoices = fillChoicesTable(currentBoard)
+            makePermGuessMaxHeads(currentBoard, localPossibleChoices)
+        else:
+            localPossibleChoices = fillChoicesTable(currentBoard)
+            makePermGuessMaxTails(currentBoard, localPossibleChoices)
         findNumbers(currentBoard)
         if not notDone(currentBoard):
             print(depth)
+            print(makeMsg(currentBoard))
             return currentBoard
-        elif depth == 2:
+        elif depth == 10:
             return None
         else:
-            mainRec(currentBoard, depth + 1)
-        currentBoard = copy.deepcopy(correctBoard)
+            return mainRec(copy.deepcopy(currentBoard), depth + 1)
 
 
-print(makeMsg(mainRec(board, 0)))
+
+mainRec(board, 0)
 
 
-# if board is finished
-    # return the board and print the depth
-# elif board is not finished but the depth is too big
-    # return void
-# else
-    # call function with depth+1
+
+
+
 
 
 

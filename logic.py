@@ -1,11 +1,12 @@
 from ai import *
-from data import possibleChoices
+from data import possibleChoices, makeMsg
 def addNonZeroValuesToChoices(currentBoard):
     board = currentBoard
     for i in range(9):
         for j in range(9):
             if board[i][j] != 0:
                 possibleChoices[i][j] = board[i][j]
+
 
 
 # replace zeros with empty space
@@ -18,10 +19,9 @@ def replaceZeros(currentBoard):
 
 
 def fillChoices(x, y, currentBoard):
-    board = currentBoard
     final = []
     for i in range(1, 10):
-        if isNotOnRow(board[y], i):
+        if isNotOnRow(currentBoard[y], i):
             if isNotOnColumn(x, i, currentBoard):
                 if isNotOnSquare(x, y, i, currentBoard):
                     final.append(i)
@@ -30,11 +30,23 @@ def fillChoices(x, y, currentBoard):
 
 
 def fillChoicesTable(currentBoard):
-    board = currentBoard
+    # possibleChoices = [
+    #     [[], [], [], [], [], [], [], [], []],
+    #     [[], [], [], [], [], [], [], [], []],
+    #     [[], [], [], [], [], [], [], [], []],
+    #     [[], [], [], [], [], [], [], [], []],
+    #     [[], [], [], [], [], [], [], [], []],
+    #     [[], [], [], [], [], [], [], [], []],
+    #     [[], [], [], [], [], [], [], [], []],
+    #     [[], [], [], [], [], [], [], [], []],
+    #     [[], [], [], [], [], [], [], [], []]
+    # ]
+    addNonZeroValuesToChoices(currentBoard)
     for i in range(9):
         for j in range(9):
-            if board[j][i] == " ":
-                possibleChoices[j][i] = fillChoices(i, j, board)
+            if currentBoard[j][i] == " ":
+                possibleChoices[j][i] = fillChoices(i, j, currentBoard)
+    return possibleChoices
 
 
 def addCorrectValuesToBoard(currentBoard):
@@ -96,23 +108,23 @@ def getGoodNumGuessMin():
     return min(stripList(twoGuesses))
 
 
-def makePermGuessMaxHeads(currentBoard):
-    for i in range(len(possibleChoices)):
-        for j in range(len(possibleChoices[i])):
-            if isinstance(possibleChoices[i][j], list):
-                if len(possibleChoices[i][j]) == 2:
-                    if getGoodNumGuessMax() in possibleChoices[i][j]:
-                        currentBoard[i][j] = possibleChoices[i][j][0]
+def makePermGuessMaxHeads(currentBoard, currentPossibleChoices):
+    for i in range(len(currentPossibleChoices)):
+        for j in range(len(currentPossibleChoices[i])):
+            if isinstance(currentPossibleChoices[i][j], list):
+                if len(currentPossibleChoices[i][j]) == 2:
+                    if getGoodNumGuessMax() in currentPossibleChoices[i][j]:
+                        currentBoard[i][j] = currentPossibleChoices[i][j][0]
                         return
 
 
-def makePermGuessMaxTails(currentBoard):
-    for i in range(len(possibleChoices)):
-        for j in range(len(possibleChoices[i])):
-            if isinstance(possibleChoices[i][j], list):
-                if len(possibleChoices[i][j]) == 2:
-                    if getGoodNumGuessMax() in possibleChoices[i][j]:
-                        currentBoard[i][j] = possibleChoices[i][j][1]
+def makePermGuessMaxTails(currentBoard, currentPossibleChoices):
+    for i in range(len(currentPossibleChoices)):
+        for j in range(len(currentBoard[i])):
+            if isinstance(currentPossibleChoices[i][j], list):
+                if len(currentPossibleChoices[i][j]) == 2:
+                    if getGoodNumGuessMax() in currentPossibleChoices[i][j]:
+                        currentBoard[i][j] = currentPossibleChoices[i][j][1]
                         return
 
 
