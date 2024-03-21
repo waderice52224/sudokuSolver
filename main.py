@@ -49,7 +49,7 @@ def findNumbers(currentBoard):
 
 
 
-
+# this code needs refactored. Its dirty and it is not solving all the puzzles it should. From here on out this funcion will be devolopled with TDD. I am sick of manually testing puzzles.
 def mainRec(currentBoard, depth):
     findNumbers(currentBoard)
     for i in range(2):
